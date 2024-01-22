@@ -1,14 +1,14 @@
 import torch
 import torch.optim as optim
 import torch.nn as nn
-from model_tzpp import TransZeroPP
+from model_rszero_csat import RSZeroCSAT
 from dataset import AIDDataLoader
 from helper_func import eval_zs_gzsl
 import numpy as np
 import wandb
 
 # init wandb from config file
-wandb.init(project='TransZeroPP', config='wandb_config/aid_gzsl.yaml')
+wandb.init(project='RSZeroCSAT', config='wandb_config/aid_gzsl.yaml')
 config = wandb.config
 print('Config file from wandb:', config)
 
@@ -27,7 +27,7 @@ att[att<0] = 0
 normalize_att = dataloader.normalize_att
 
 # TransZero model
-model = TransZeroPP(config, dataloader.att, dataloader.w2v_att,
+model = RSZeroCSAT(config, dataloader.att, dataloader.w2v_att,
                   dataloader.seenclasses, dataloader.unseenclasses).to(config.device)
 optimizer = optim.Adam(model.parameters(), lr=0.00001, weight_decay=0.0001)
 
