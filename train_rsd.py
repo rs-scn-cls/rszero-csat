@@ -1,14 +1,14 @@
 import torch
 import torch.optim as optim
 import torch.nn as nn
-from model_tzpp import TransZeroPP
+from model_rszero_csat import RSZeroCSAT
 from dataset import RSDDataLoader
 from helper_func import eval_zs_gzsl
 import numpy as np
 import wandb
 
 # init wandb from config file
-wandb.init(project='TransZeroPP', config='wandb_config/rsd_gzsl.yaml')
+wandb.init(project='RSZeroCSAT', config='wandb_config/rsd_gzsl.yaml')
 # wandb.init(project='TransZeroPP', config='wandb_config/sun_czsl.yaml')
 config = wandb.config
 print('Config file from wandb:', config)
@@ -23,7 +23,7 @@ torch.cuda.manual_seed_all(seed)
 np.random.seed(seed)
 
 # TransZero model
-model = TransZeroPP(config, dataloader.att, dataloader.w2v_att,
+model = RSZeroCSAT(config, dataloader.att, dataloader.w2v_att,
                   dataloader.seenclasses, dataloader.unseenclasses).to(config.device)
 optimizer = optim.Adam(model.parameters(), lr=0.0001, weight_decay=0.0001)
 
