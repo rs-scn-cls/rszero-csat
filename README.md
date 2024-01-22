@@ -87,7 +87,7 @@ Note: Adjust the "split_idx" value in the preprocessing.py file according to the
 
 **Training RSZero-CSAT**
 
-In `./wandb_config`, we provide parameters setting of conventional zero-shot learning (CZSL) and generalized zero-shot learning (GZSL) tasks for UCM21, AID30, NWPU45, and RS19. 
+In `./wandb_config`, we provide parameter settings for UCM21, AID30, NWPU45, and RS19 for zero-shot learning tasks. 
 Run the given commands to train the "RSZero-CSAT" from scratch:
 
 ```
